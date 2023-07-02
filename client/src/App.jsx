@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div style={{width: "90%", margin: "auto auto", textAlign: "center"}}>
-        <h1>Pagina principal</h1>
+        <h1>Pagina principall</h1>
         <Button
           variant="outline-dark"
           style={{width: "100%"}}
