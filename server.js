@@ -1,18 +1,25 @@
+require("dotenv").config() // Cargar las variables de entorno desde el archivo .env
+
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 
 const app = express()
+const port = process.env.PORT || 3001
+const dbUrl = process.env.DB_URL
+const path = require("path")
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
-mongoose.connect("mongodb://localhost:27017/mernCrud", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   family: 4
 })
+
+// Resto del código...
 
 const postSchema = mongoose.Schema({
   title: String,
@@ -60,6 +67,9 @@ app.put("/update/:id", (req, res) => {
     .then((doc) => console.log(doc))
     .catch((err) => console.log(err))
 })
+
+app.use(express.static("./client/build"))
+app.get("*")
 
 app.listen(3001, () => {
   console.log("El servidor está corriendo en el puerto 3001")
