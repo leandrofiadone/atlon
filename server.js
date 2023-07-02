@@ -69,7 +69,9 @@ app.put("/update/:id", (req, res) => {
 })
 
 app.use(express.static("./client/build"))
-app.get("*")
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+})
 
 app.listen(3001, () => {
   console.log("El servidor está corriendo en el puerto 3001")

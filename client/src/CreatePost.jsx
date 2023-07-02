@@ -2,6 +2,7 @@ import {Button, Form} from "react-bootstrap"
 import {useNavigate} from "react-router-dom"
 import {useState, useEffect} from "react"
 import axios from "axios"
+import baseUrl from "./baseUrl"
 
 function CreatePost() {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ function CreatePost() {
   const handleClick = (event) => {
     event.preventDefault()
     axios
-      .post("http://localhost:3001/create", post)
+      .post(`${baseUrl}/create`, post)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
 

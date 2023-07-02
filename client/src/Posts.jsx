@@ -4,6 +4,7 @@ import {Button} from "react-bootstrap"
 import Modal from "react-bootstrap/Modal"
 import {Form} from "react-bootstrap"
 import {useNavigate} from "react-router-dom"
+import baseUrl from "./baseUrl"
 
 function Posts() {
   const navigate = useNavigate()
@@ -16,7 +17,7 @@ function Posts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/post")
+      .get(`${baseUrl}/post`)
       .then((res) => {
         console.log(res)
         setPosts(res.data)
@@ -27,7 +28,7 @@ function Posts() {
   const deletePost = (id) => {
     console.log(id)
     axios
-      .delete(`http://localhost:3001/delete/${id}`)
+      .delete(`${baseUrl}/delete/${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
 
@@ -52,7 +53,7 @@ function Posts() {
 
   const saveUpdatePost = () => {
     axios
-      .put(`http://localhost:3001/update/${updatedPosts._id}`, updatedPosts)
+      .put(`${baseUrl}/update/${updatedPosts._id}`, updatedPosts)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
 
